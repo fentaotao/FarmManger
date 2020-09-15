@@ -1,0 +1,31 @@
+/*这是生产计划管理的样式*/
+.jhcard{
+    text-align: left;
+    padding: 20px;
+    margin: 5px;
+    border: 2px solid #cccccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 230px;
+    height: 320px;
+    float: left;
+}
+.jhitem{
+    border-bottom: 1px solid #cccccc;
+    padding: 5px;
+}
+
+.editem{
+    padding: 3px 0px;
+}
+
+input{
+    width: 120px;
+}
+
+.button{
+    margin: 5px;
+    width: 60px;
+    background: ghostwhite;
+    border-radius: 10px;
+}

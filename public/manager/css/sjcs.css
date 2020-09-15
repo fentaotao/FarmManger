@@ -1,0 +1,10 @@
+/*这是的样式*/
+tr{
+    height: 50px;
+}
+
+input{
+    width: 20%;
+    height: 40px;
+    margin: 5px 6%;
+}

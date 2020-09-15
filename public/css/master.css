@@ -1,0 +1,74 @@
+/**
+ * 这是管理页样式
+ */
+#head {
+    text-align: center;
+}
+
+.cardLayout{
+    border: 2px solid #cccccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+html{
+    background: url(../img/bk01.jpg) no-repeat;
+    background-size: cover;
+}
+
+#mainContent{
+    height: 540px;
+    align-content: center;
+    position: relative;
+}
+#msg {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#body {
+    margin: 15px;
+    align-content: center;
+}
+
+#tail {
+    width: auto;
+    text-align: center;
+}
+
+.subpage {
+    border: 2px solid #cccccc;
+    border-radius: 15px;
+    float: left;
+    width: 18%;
+    padding: 2% 10px;
+    margin: 1% 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center
+}
+
+#title{
+    padding-left: 30px;
+}
+
+
+a:link {
+    color: green;
+    text-decoration: none;
+}
+
+a:active {
+    color: green;
+    text-decoration: none;
+}
+
+a:visited {
+    color: grey;
+    text-decoration: none;
+}
+
+a:hover {
+    color: orangered;
+    text-decoration: none;
+}

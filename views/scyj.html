@@ -1,0 +1,54 @@
+<!--这是采收预计模块-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>采收预计</title>
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/tudi.css">
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/tixi.css">
+</head>
+
+<body>
+    <div id="content">
+        <div id="head" class="cardLayout">
+            <h1>采收预计</h1>
+        </div>
+        <div id="body" class="cardLayout">
+            <div class="cardLayout" style="margin: 10px 0px">
+                <p style="text-align: center">采收预计表</p>
+                <table width="100%" id="record">
+                    <tr class="cardLayout">
+                        <td>时间</td>
+                        <td>蔬菜</td>
+                        <td>采收量</td>
+                    </tr>
+                    <!--js将在此处添加条目-->
+                </table>
+            </div>
+        </div>
+        <div id="tile" class="cardLayout">
+            <p>谢文耀 All Right Reserved</p>
+        </div>
+    </div>
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/jquery.form.js"></script>
+    <script>
+        $(function() {
+            //获取数据
+            $.get('/scyj', function(data) {
+                for (let list of data) {
+                    let table = '<tr class="cardLayout"><td>';
+                    let s = '</td><td>';
+                    for (let ele of list) {
+                        table += (ele + s);
+                    }
+                    table += '</td></tr>';
+                    $("#record").append(table);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

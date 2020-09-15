@@ -1,0 +1,65 @@
+<!--这是蔬菜盈亏统计模块-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>蔬菜盈亏统计</title>
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/tudi.css" />
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/jiyk.css" />
+</head>
+
+<body>
+    <div id="content">
+        <div id="head" class="cardLayout">
+            <h1>蔬菜盈亏统计</h1>
+        </div>
+        <div id="body" class="cardLayout">
+            <div id="cardPane" class="cardLayout">
+                <p style="text-align: center; margin: 10px 0px">盈亏统计卡片</p>
+                <!--js将在此处添加一个记录卡片-->
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div id="tile" class="cardLayout">
+            <p>谢文耀 All Right Reserved</p>
+        </div>
+    </div>
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/jquery.form.js"></script>
+    <script src="/public/js/myLibs.js"></script>
+    <script>
+        $(function() {
+            //获取数据
+            $.get("/jiyk", function(data) {
+                let pane = $("#cardPane");
+                let h1 = '<div class="jhcard" style="background:';
+                let h2 = '"><div class="jhitem">';
+                let s = '</div><div class="jhitem">';
+                let t = "</div></div>";
+                let n = [
+                    "蔬菜：",
+                    "总成本：",
+                    "采收量：",
+                    "销售额：",
+                    "起始时间：",
+                    "终止时间：",
+                    "整体盈亏："
+                ];
+
+                for (let list of data) {
+                    let i;
+                    let card = h1 + getRandomColor() + h2;
+                    for (i = 0; i < n.length - 1; i++) {
+                        card += n[i] + list[i] + s;
+                    }
+                    card += n[i] + list[i];
+                    card += t;
+                    pane.append(card);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!--这是管理员界面-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/master.css" />
+</head>
+
+<body>
+    <div id="content">
+        <!--头-->
+        <div id="head" class="cardLayout">
+            <h1>有机农场管理系统</h1>
+            <a href="/logout">
+                <div style="float: right;">
+
+                    退出
+
+                </div>
+            </a>
+        </div>
+        <!--主体-->
+
+        <div class="cardLayout" id="mainContent">
+            <div id="title" class="cardLayout">
+                <h3>管理员模块</h3>
+            </div>
+
+            <div id="body">
+                <!--这里是具体模块-->
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/tudi">土地管理</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/sccl">生产材料购买</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/pfpy">配肥配药管理</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/scjh">生产计划管理</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/nzjl">农作记录管理</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/sjcs">实际采收管理</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/tixi">提醒管理</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/scyj">蔬菜预计采收</a>
+                </div>
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/jiyk">蔬菜盈亏统计</a>
+                </div>
+
+                <div class="subpage">
+                    <a class="pagelink" href="/manager/jyzx">生产经营折线</a>
+                </div>
+            </div>
+            <div id="msg" style="clear:both;" class="cardLayout">
+                <h4 style="padding-left: 30px">消息</h4>
+                <div id="msg1" class="cardLayout" style="padding: 8px 30px"></div>
+            </div>
+        </div>
+        <!--尾部-->
+        <div id="tail" class="cardLayout">
+            <p>谢文耀 All Right Reserved</p>
+        </div>
+    </div>
+
+    <script src="/public/js/TweenLite.min.js"></script>
+    <script src="/public/js/EasePack.min.js"></script>
+    <script src="/public/js/rAF.js"></script>
+    <script src="/public/js/demo-1.js"></script>
+    <script src="/public/js/jquery.js"></script>
+    <!--显示提醒消息-->
+    <script>
+        $.get("/tixi", function(data) {
+            let top = data[0];
+            $("#msg1").text("提醒: " + top[0] + "将于" + top[2] + top[1]);
+        });
+    </script>
+</body>
+
+</html>

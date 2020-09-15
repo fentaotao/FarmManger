@@ -1,0 +1,12 @@
+/*这是土地管理模块的样式*/
+.cardLayout{
+    border: 2px solid #cccccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+html{
+    background: url(../img/bk01.jpg) no-repeat;
+    background-size: cover;
+}

@@ -1,0 +1,67 @@
+<!--提醒模块-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>提醒管理</title>
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/tudi.css">
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/tixi.css">
+</head>
+
+<body>
+    <div id="content">
+        <div id="head" class="cardLayout">
+            <h1>提醒管理</h1>
+        </div>
+        <div id="body" class="cardLayout">
+            <div class="cardLayout" style="margin: 10px 0px">
+                <p style="text-align: center">事件列表</p>
+                <table width="100%" id="record">
+                    <tr class="cardLayout">
+                        <td>蔬菜</td>
+                        <td>类型</td>
+                        <td>时间</td>
+                        <td>管理</td>
+                    </tr>
+                    <!--js脚本将在此处添加事件条目-->
+                </table>
+            </div>
+        </div>
+        <div id="tile" class="cardLayout">
+            <p>谢文耀 All Right Reserved</p>
+        </div>
+    </div>
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/jquery.form.js"></script>
+    <script>
+        $(function() {
+            //获取提醒事件
+            $.get('/tixi', function(data) {
+                let count = 0;
+                for (let list of data) {
+                    let table = '<tr class="cardLayout"><td>';
+                    let s = '</td><td>';
+                    for (let ele of list) {
+                        table += (ele + s);
+                    }
+                    table += ('</td><td><button id="' + count + '0">置顶</button><button id="' + count + '1">置底</button></td></tr>');
+                    $("#record").append(table);
+                    count += 1;
+                }
+                //设置按钮点击事件
+                $("button").on("click", function(event) {
+                    console.log(event.target.id);
+                    $.post('/tixi', {
+                        id: event.target.id
+                    }, function(rst) {
+                        location.reload();
+                    })
+                })
+            });
+
+        });
+    </script>
+</body>
+
+</html>

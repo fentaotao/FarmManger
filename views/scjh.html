@@ -1,0 +1,125 @@
+<!--这是生产计划模块-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>生产计划</title>
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/tudi.css">
+    <link rel="stylesheet" type="text/css" href="/public/manager/css/scjh.css">
+</head>
+
+<body>
+    <div id="content">
+        <div id="head" class="cardLayout">
+            <h1>生产计划</h1>
+        </div>
+        <div id="body" class="cardLayout">
+            <div id="cardPane" class="cardLayout">
+                <p style="text-align: center; margin: 10px 0px">计划卡片</p>
+                <!--js在此处添加计划卡片-->
+            </div>
+            <!--空白卡片-->
+            {{if add}}
+            <div id="addplan" class="jhcard" align="center" style="background:url('img/add.png');background-size:100% 100%">
+            </div>
+            {{/if}}
+            <!--可编辑卡片-->
+            <form action="/scjh" target="nm_iframe" name="form" method="post" id="form" class="jhcard" style="display: none">
+                <div class="editem">计 划 编 号 ：系统指定</div>
+                <div class="editem">蔬 菜 名 称 ：
+                    <input id="name" type="text" name="name" />
+                </div>
+                <div class="editem">制 定 日 期 ：系统时间</div>
+                <div class="editem">播 种 日 期 ：
+                    <input id="seed_date" type="text" name="seed_date" />
+                </div>
+                <div class="editem">播 种 土 地 ：
+                    <input id="seed_place" type="text" name="seed_place" />
+                </div>
+                <div class="editem">上 市 日 期 ：
+                    <input id="launch_date" type="text" name="launch_date" />
+                </div>
+
+                <div class="editem">下 市 日 期 ：
+                    <input id="delist_date" type="text" name="delist_date" />
+                </div>
+                <div class="editem">预计采收量：
+                    <input id="pre_gain" type="text" name="pre_gain">
+                </div>
+                <div class="editem">预计高峰期：
+                    <input id="pre_hdate" type="text" name="pre_hdate">
+                </div>
+                <div class="editem">高峰采收量：
+                    <input id="pre_hgain" type="text" name="pre_hgain">
+                </div>
+
+                <!--按钮-->
+                <div class="editem">
+                    <input class="button" id="cancle" type="reset" value="取消">
+                    <input class="button" id="reset" type="reset" value="重置">
+                    <input class="button" id="submit" type="reset" value="提交">
+                </div>
+            </form>
+            <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+            <div style="clear: both"></div>
+        </div>
+        <div id="tile" class="cardLayout">
+            <p>谢文耀 All Right Reserved</p>
+        </div>
+    </div>
+    <script src="/public/js/jquery.js"></script>
+    <script src="/public/js/jquery.form.js"></script>
+    <script src="/public/js/myLibs.js"></script>
+    <script>
+        $(function() {
+            //获取数据
+            $.get('/scjh', function(data) {
+                let pane = $("#cardPane");
+                let h1 = '<div class="jhcard" style="background:';
+                let h2 = '"><div class="jhitem">';
+                let s = '</div><div class="jhitem">';
+                let t = '</div></div>';
+                let n = ['计划编号：', '蔬菜名称：', '制定日期：', '播种日期：', '播种土地：',
+                    '上市日期：', '下市日期：', '预计采收量：', '预计高峰期：', '高峰采收量：'
+                ];
+
+                for (let list of data) {
+                    let i;
+                    let card = (h1 + getRandomColor() + h2);
+                    for (i = 0; i < n.length - 1; i++) {
+                        card += (n[i] + list[i] + s);
+                    }
+                    card += (n[i] + list[i]);
+                    card += t;
+                    pane.append(card);
+                }
+            });
+            //添加事件
+            $("#addplan").on("click", function() {
+                $("#addplan").hide();
+                $("#form").show();
+            });
+            //取消添加
+            $("#cancle").on("click", function() {
+                $("#addplan").show();
+                $("#form").hide();
+            });
+            //提交数据
+            $("#submit").on("click", function() {
+                if ($("#name").val() && $("#seed_date").val() && $("#seed_place").val() &&
+                    $("#launch_date").val() && $("#delist_date").val() && $("#pre_gain").val() &&
+                    $("#pre_hdate").val() && $("#pre_hgain").val()) {
+                    $("#form").ajaxSubmit(function(msg) {
+                        alert("提交成功！");
+                        location.reload();
+                    });
+                } else {
+                    alert("所有表单必填！");
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!--这是生产材料购买模块-->
+<!DOCTYPE html>
+<table lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>生产材料购买</title>
+        <link rel="stylesheet" type="text/css" href="/public/manager/css/tudi.css">
+        <link rel="stylesheet" type="text/css" href="/public/manager/css/sccl.css">
+    </head>
+
+    <body>
+        <div id="content">
+            <div id="head" class="cardLayout">
+                <h1>生产材料购买</h1>
+            </div>
+            <div id="body" class="cardLayout">
+                <div class="cardLayout" style="margin: 10px 0px">
+                    <p style="text-align: center">购买记录</p>
+                    <table width="100%" id="record">
+                        <tr class="cardLayout">
+                            <td>编号</td>
+                            <td>日期</td>
+                            <td>名称</td>
+                            <td>数量</td>
+                            <td>单价</td>
+                            <td>备注</td>
+                        </tr>
+                        <!--js在此处添加条目-->
+                    </table>
+                </div>
+                {{if add}}
+                <div class="cardLayout" style="margin: 10px 0px">
+                    <p style="text-align: center">购买种子</p>
+
+                    <table width="100%">
+                        <tr class="cardLayout">
+                            <td>名称</td>
+                            <td>数量</td>
+                            <td>单价</td>
+                            <td>备注</td>
+                        </tr>
+                    </table>
+                    <!--填写一个购买表-->
+
+                    <form action="/sccl" id="form" name="form" method="post" class="cardLayout">
+                        <input id="name" type="text" name="name" />
+                        <input id="number" type="text" name="number" />
+                        <input id="price" type="text" name="price" />
+                        <input id="note" type="text" name="note" />
+                        <input type="reset" value="重置" />
+                        <input id="submit" type="reset" value="提交" />
+                    </form>
+
+                </div>
+                {{/if}}
+
+            </div>
+            <div id="tile" class="cardLayout">
+                <p>谢文耀 All Right Reserved</p>
+            </div>
+        </div>
+        <script src="/public/js/jquery.js"></script>
+        <script src="/public/js/jquery.form.js"></script>
+        <script>
+            $(function() {
+                //获取数据
+                $.get('/sccl', function(data) {
+                    for (let list of data) {
+                        let table = '<tr class="cardLayout"><td>';
+                        let s = '</td><td>';
+                        for (let ele of list) {
+                            table += (ele + s);
+                        }
+                        table += '</td></tr>';
+                        $("#record").append(table);
+                    }
+                });
+                //提交数据
+                $("#submit").on("click", function() {
+                    let name = $("#name").val();
+                    let number = $("#number").val();
+                    let price = $("#price").val();
+                    let note = $("#note").val();
+                    if (name && number && price && note) {
+                        $("#form").ajaxSubmit(
+                            function() {
+                                alert("提交成功！");
+                                location.reload();
+                            })
+                    } else {
+                        alert("所有表格必填！");
+                    }
+                })
+            });
+        </script>
+    </body>
+
+</table>

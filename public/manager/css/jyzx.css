@@ -1,0 +1,17 @@
+/*这是蔬菜生产经营折线图显示模块的样式*/
+.container {
+    margin: 20px;
+    width: 400px;
+    height: 250px;
+    border: 2px solid #cccccc;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    float: left;
+}
+.axis path,
+.axis line,
+.line {
+    stroke: #000;
+    fill: none;
+}

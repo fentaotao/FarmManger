@@ -1,0 +1,17 @@
+/*这是提醒管理的样式*/
+tr{
+    height: 50px;
+}
+
+input{
+    width: 20%;
+    height: 40px;
+    margin: 5px 6%;
+}
+
+button{
+    margin: 5px 35%;
+    background: ghostwhite;
+    border-radius: 10px;
+    display: block;
+}
